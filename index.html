@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vending Machine</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- <div class="header">
+  <h1>Vending Machine</h1>
+</div> -->
+
+
+<div class="encompass-elements">
+    <div class="encompass-keypad">
+
+  <div class="screen-wrapper">
+
+    <!-- Screen -->
+    <div class="screen">
+      <p class="screen-label">VENDING MACHINE</p>
+      <p class="screen-sub">Enter item code then press ENTER</p>
+      <p class="screen-code" id="display">Code: _</p>
+      <p class="screen-cart" id="selectedList">Cart: none</p>
+      <p class="screen-output" id="output"></p>
+      <p class="screen-output" id="output2"></p>
+      <p class="screen-warning" id="warning"></p>
+    </div>
+
+    <!-- Loading bar -->
+    <div id="loadingSection" style="display:none;" class="loading-wrap">
+      <p class="loading-label">Dispensing, please wait...</p>
+      <div class="loading-track">
+        <div id="loadingBar" class="loading-fill"></div>
+      </div>
+    </div>
+
+    <!-- Payment section -->
+    <div id="paymentSection" style="display:none;" class="payment-wrap">
+      <p class="pay-label" id="priceDisplay"></p>
+      <p class="pay-label" id="priceDisplay2"></p>
+      <div class="pay-row">
+        <input type="number" id="amountInput" placeholder="Enter amount ($)" step="0.01" min="0" class="pay-input">
+        <button class="pay-btn" onclick="pay(), playSound()">Pay</button>
+        <audio id="myAudio" src="photos/sfeffect.mp3"></audio>
+        <audio id="myAudio2" src="photos/sfclick.mp3"></audio>
+      </div>
+    </div>
+
+    
+    <div class="keypad">
+      <button class="btn" id="btn1"   onclick="addInput('A'), playClickSound()">A</button>
+      <button class="btn" id="btn2"   onclick="addInput('B'), playClickSound()"">B</button>
+      <button class="btn" id="btn3"   onclick="addInput('C'), playClickSound()">C</button>
+      <button class="btn" id="btn4"   onclick="addInput('1'), playClickSound()">1</button>
+      <button class="btn" id="btns5"  onclick="addInput('2'), playClickSound()">2</button>
+      <button class="btn" id="btns6"  onclick="addInput('3'), playClickSound()">3</button>
+      <button class="btn" id="btns7"  onclick="addInput('4'), playClickSound()">4</button>
+      <button class="btn" id="btns8"  onclick="addInput('5'), playClickSound()">5</button>
+      <button class="btn" id="btns9"  onclick="addInput('6'), playClickSound()">6</button>
+      <button class="btn enter-btn" id="btns10" onclick="submitCode(), playClickSound()">Confirm</button>
+      <button class="btn clear-btn" id="btns11" onclick="clearInput(), playClickSound()">Clear</button>
+      <button class="btn disp-btn"  id="btns12" onclick="dispense(), playClickSound()">Dispense</button>
+    </div>
+    </div>
+
+    <!-- New Transaction Button -->
+    <button class="new-btn" id="btns13" style="display:none;" onclick="clearInput(), playClickSound()">
+      New Transaction
+    </button>
+
+<div class="stock-panel">
+  <p class="stock-title">STOCK AVAILABILITY</p>
+  <div id="stockPanel"></div>
+</div>
+
+  </div>
+
+    <div class="grid-container">
+    <div class="itemcoke"><img src="photos/hd-coca-cola-zero-can-png-735811696436705bkzavruwf9-removebg-preview.png" 
+      alt="Coca-Cola Zero Can" class="item-image" id="item-coke"><p class="name-price">Coke Zero - 2.50$</p>
+      <p class="name-price" style="font-weight:bold;">Code: A1B</p></div>
+    
+    <div class="itemcoke"><img src="photos/Adobe Express - file.png" 
+      alt="Coca-Cola Zero Can" class="item-image" id="item-coke"><p class="name-price">Pepsi - 2.20$</p>
+      <p class="name-price" style="font-weight:bold;" >Code: C2A</p></div>
+
+    <div class="itemcoke"><img src="photos/25-255863_transparent-sprite-can-png-fizz-png-download(1)(1).png" 
+      alt="Coca-Cola Zero Can" class="item-image" id="item-coke"><p class="name-price">Sprite - 2.00$</p>
+      <p class="name-price" style="font-weight:bold;">Code: A4B</p></div>
+
+    <div class="itemcoke"><img src="photos/674bab3cccff76fdfca37f80f78878d5(1).png" 
+      alt="Coca-Cola Zero Can" class="item-image" id="item-coke"><p class="name-price">Dr. Pepper - 3.50$</p>
+      <p class="name-price" style="font-weight:bold;">Code: A1B</p></div>
+    
+    <div class="itemcoke"><img src="photos/4bbe2c69d160b78c6cd629680cc3707e(1).png" 
+      alt="Coca-Cola Zero Can" class="item-image" id="item-coke"><p class="name-price">Pepsi - 2.20$</p>
+      <p class="name-price" style="font-weight:bold;" >Code: C1C</p></div>
+
+    <div class="itemcoke"><img src="photos/aw.png" 
+      alt="Coca-Cola Zero Can" class="item-image" id="item-coke"><p class="name-price">A & W - 3.99$</p>
+      <p class="name-price" style="font-weight:bold;">Code: C4A</p></div>
+
+    <div class="itemcoke"><img src="photos/coca-cola(1).png" 
+      alt="Coca-Cola Zero Can" class="item-image" id="item-coke"><p class="name-price">Coke Original - 2.30$</p>
+      <p class="name-price" style="font-weight:bold;">Code: A2A</p></div>
+    
+    <div class="itemcoke"><img src="photos/mtndew(1).png" 
+      alt="Coca-Cola Zero Can" class="item-image" id="item-coke"><p class="name-price">Mountain Dew - 2.20$</p>
+      <p class="name-price" style="font-weight:bold;" >Code: C6A</p></div>
+
+    <div class="itemcoke"><img src="photos/candry(1).png" 
+      alt="Coca-Cola Zero Can" class="item-image" id="item-coke"><p class="name-price">Canada Dry - 4.32$</p>
+      <p class="name-price" style="font-weight:bold;">Code: A5A</p></div>
+ 
+  </div>
+</div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
