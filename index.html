@@ -20,7 +20,7 @@
     <!-- Screen -->
     <div class="screen">
       <p class="screen-label">VENDING MACHINE</p>
-      <p class="screen-sub">Enter item code then press ENTER</p>
+      <p class="screen-sub">Enter item code then press Confirm</p>
       <p class="screen-code" id="display">Code: _</p>
       <p class="screen-cart" id="selectedList">Cart: none</p>
       <p class="screen-output" id="output"></p>
@@ -42,7 +42,7 @@
       <p class="pay-label" id="priceDisplay2"></p>
       <div class="pay-row">
         <input type="number" id="amountInput" placeholder="Enter amount ($)" step="0.01" min="0" class="pay-input">
-        <button class="pay-btn" onclick="pay(), playSound()">Pay</button>
+        <button class="pay-btn" onclick="pay()">Pay</button>
         <audio id="myAudio" src="photos/sfeffect.mp3"></audio>
         <audio id="myAudio2" src="photos/sfclick.mp3"></audio>
       </div>
@@ -50,25 +50,23 @@
 
     
     <div class="keypad">
-      <button class="btn" id="btn1"   onclick="addInput('A'), playClickSound()">A</button>
-      <button class="btn" id="btn2"   onclick="addInput('B'), playClickSound()"">B</button>
-      <button class="btn" id="btn3"   onclick="addInput('C'), playClickSound()">C</button>
-      <button class="btn" id="btn4"   onclick="addInput('1'), playClickSound()">1</button>
-      <button class="btn" id="btns5"  onclick="addInput('2'), playClickSound()">2</button>
-      <button class="btn" id="btns6"  onclick="addInput('3'), playClickSound()">3</button>
-      <button class="btn" id="btns7"  onclick="addInput('4'), playClickSound()">4</button>
-      <button class="btn" id="btns8"  onclick="addInput('5'), playClickSound()">5</button>
-      <button class="btn" id="btns9"  onclick="addInput('6'), playClickSound()">6</button>
-      <button class="btn enter-btn" id="btns10" onclick="submitCode(), playClickSound()">Confirm</button>
-      <button class="btn clear-btn" id="btns11" onclick="clearInput(), playClickSound()">Clear</button>
-      <button class="btn disp-btn"  id="btns12" onclick="dispense(), playClickSound()">Dispense</button>
+      <button class="btn" id="btn1"   onclick="addInput('A')">A</button>
+      <button class="btn" id="btn2"   onclick="addInput('B')">B</button>
+      <button class="btn" id="btn3"   onclick="addInput('C')">C</button>
+      <button class="btn" id="btn4"   onclick="addInput('1')">1</button>
+      <button class="btn" id="btns5"  onclick="addInput('2')">2</button>
+      <button class="btn" id="btns6"  onclick="addInput('3')">3</button>
+      <button class="btn" id="btns7"  onclick="addInput('4')">4</button>
+      <button class="btn" id="btns8"  onclick="addInput('5')">5</button>
+      <button class="btn" id="btns9"  onclick="addInput('6')">6</button>
+      <button class="btn enter-btn" id="btns10" onclick="submitCode()">Confirm</button>
+      <button class="btn clear-btn" id="btns11" onclick="clearInput()">Clear</button>
+      <button class="btn disp-btn"  id="btns12" onclick="dispense()">Dispense</button>
     </div>
     </div>
 
     <!-- New Transaction Button -->
-    <button class="new-btn" id="btns13" style="display:none;" onclick="clearInput(), playClickSound()">
-      New Transaction
-    </button>
+    <button class="new-btn" id="btns13" style="display:none;" onclick="clearInput()">New Transaction</button>
 
 <div class="stock-panel">
   <p class="stock-title">STOCK AVAILABILITY</p>
@@ -92,11 +90,11 @@
 
     <div class="itemcoke"><img src="photos/674bab3cccff76fdfca37f80f78878d5(1).png" 
       alt="Coca-Cola Zero Can" class="item-image" id="item-coke"><p class="name-price">Dr. Pepper - 3.50$</p>
-      <p class="name-price" style="font-weight:bold;">Code: A1B</p></div>
+      <p class="name-price" style="font-weight:bold;">Code: A1C</p></div>
     
     <div class="itemcoke"><img src="photos/4bbe2c69d160b78c6cd629680cc3707e(1).png" 
-      alt="Coca-Cola Zero Can" class="item-image" id="item-coke"><p class="name-price">Pepsi - 2.20$</p>
-      <p class="name-price" style="font-weight:bold;" >Code: C1C</p></div>
+      alt="Coca-Cola Zero Can" class="item-image" id="item-coke"><p class="name-price">Fanta - 2.20$</p>
+      <p class="name-price" style="font-weight:bold;" >Code: C1A</p></div>
 
     <div class="itemcoke"><img src="photos/aw.png" 
       alt="Coca-Cola Zero Can" class="item-image" id="item-coke"><p class="name-price">A & W - 3.99$</p>
