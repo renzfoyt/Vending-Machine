@@ -6,6 +6,7 @@ const products = {
   "C2A": { name: "Pepsi",         price: 2.20 },
   "A4B": { name: "Sprite",        price: 2.00 },
   "A1C": { name: "Dr. Pepper",    price: 3.50 },
+  "C1A": { name: "Fanta",         price: 2.20 },
   "C1C": { name: "Mountain Dew",  price: 2.20 },
   "C4A": { name: "A & W",         price: 3.99 },
   "A2A": { name: "Coke Original", price: 2.30 },
@@ -18,6 +19,7 @@ const stock = {
   "C2A": 4,
   "A4B": 9,
   "A1C": 3,
+  "C1A": 1,
   "C1C": 6,
   "C4A": 2,
   "A2A": 8,
@@ -54,11 +56,13 @@ function addInput(value) {
   currentCode += value;
   document.getElementById("display").textContent = "Code: " + currentCode;
   document.getElementById("warning").textContent = "";
+  playClickSound(true);
 }
 
 function submitCode() {
   if (currentCode === "") {
     document.getElementById("warning").textContent = "Please enter a code.";
+    playClickSound(false);
     return;
   }
 
@@ -70,11 +74,13 @@ function submitCode() {
 
   if (!product) {
     document.getElementById("warning").textContent = "Invalid code: " + code;
+    playClickSound(false);
     return;
   }
 
   if (stock[code] <= 0) {
     document.getElementById("warning").textContent = product.name + " is out of stock.";
+    playClickSound(false);
     return;
   }
 
@@ -84,11 +90,13 @@ function submitCode() {
 
   const cartNames = cart.map(c => products[c].name).join(", ");
   document.getElementById("selectedList").textContent = "Cart: " + cartNames;
+  playClickSound(true);
 }
 
 function dispense() {
   if (cart.length === 0) {
     document.getElementById("warning").textContent = "Cart is empty.";
+    playClickSound(false);
     return;
   }
 
@@ -104,6 +112,7 @@ function dispense() {
   document.getElementById("selectedList").textContent = "";
 
   setButtons(true);
+  playClickSound(true);
 }
 
 function pay() {
@@ -125,6 +134,8 @@ function pay() {
   document.getElementById("warning").textContent = "";
   document.getElementById("paymentSection").style.display = "none";
   document.getElementById("loadingSection").style.display = "block";
+
+  playSound();
 
   setTimeout(() => {
     document.getElementById("loadingBar").style.width = "100%";
@@ -162,6 +173,7 @@ function clearInput() {
   document.getElementById("priceDisplay2").textContent = "";
 
   setButtons(false);
+  playClickSound(true);
 }
 
 window.addEventListener("DOMContentLoaded", renderStock);
@@ -169,10 +181,12 @@ window.addEventListener("DOMContentLoaded", renderStock);
 function playSound() {
   const audio = document.getElementById('myAudio');
   audio.play();
-  
-}
-function playClickSound() {
-  const clickAudio = document.getElementById('myAudio2');
-  clickAudio.play();
 }
 
+function playClickSound(valid) {
+  if (valid) {
+    const clickAudio = document.getElementById('myAudio2');
+    clickAudio.currentTime = 0;
+    clickAudio.play();
+  }
+}
